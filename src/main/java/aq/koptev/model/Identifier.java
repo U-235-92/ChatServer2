@@ -61,9 +61,10 @@ public class Identifier {
     private void processAuthenticationResult(boolean authenticationSuccessState, String data) throws IOException {
         if(authenticationSuccessState) {
             User user = authenticator.getAuthenticatedUser(data);
+            String userInfo = String.format("%s %s", user.getLogin(), user.getPassword());
             handler.setUser(user);
             handler.registrationHandler();
-            handler.sendMessage(Command.OK_AUTHENTICATION_CLIENT_COMMAND, "");
+            handler.sendMessage(Command.OK_AUTHENTICATION_CLIENT_COMMAND, userInfo);
         } else {
             String errorMessage = authenticator.getErrorMessage(data);
             handler.sendMessage(Command.ERROR_AUTHENTICATION_CLIENT_COMMAND, errorMessage);
