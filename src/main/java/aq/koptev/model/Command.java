@@ -12,6 +12,7 @@ public enum Command {
     COMMON_MESSAGE_COMMAND("#common_msg"),
     PRIVATE_MESSAGE_COMMAND("#private_message"),
 
+    NOTIFY_CLIENTS_ON_CLIENT_CONNECT_COMMAND("#notify_clients_on_client_connect"),
     CLIENT_CONNECT_COMMAND("#client_connected"),
     CLIENT_DISCONNECT_COMMAND("#client_disconected"),
 

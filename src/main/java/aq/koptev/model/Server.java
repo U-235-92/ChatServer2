@@ -46,7 +46,7 @@ public class Server {
             case PRIVATE_MESSAGE_COMMAND:
                 processPrivateMessage(message);
                 break;
-            case CLIENT_CONNECT_COMMAND:
+            case NOTIFY_CLIENTS_ON_CLIENT_CONNECT_COMMAND:
                 processClientConnectedMessage(message);
                 break;
             case CLIENT_DISCONNECT_COMMAND:
