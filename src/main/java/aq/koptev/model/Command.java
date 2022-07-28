@@ -2,6 +2,7 @@ package aq.koptev.model;
 
 public enum Command {
 
+
     AUTHENTICATION_CLIENT_COMMAND("#authentication"),
     REGISTRATION_CLIENT_COMMAND("#registration"),
     ERROR_AUTHENTICATION_CLIENT_COMMAND("#err_autentication"),
