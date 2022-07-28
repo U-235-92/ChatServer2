@@ -27,7 +27,7 @@ public class Identifier {
         outputStream = new DataOutputStream(clientSocket.getOutputStream());
     }
 
-    public void processIdentification() throws IOException {
+    public synchronized void processIdentification() throws IOException {
         while(!isAuthenticationSuccess) {
             String message = inputStream.readUTF();
             String registrationResult = "";
@@ -40,13 +40,13 @@ public class Identifier {
             switch (command) {
                 case AUTHENTICATION_CLIENT_COMMAND:
                     isAuthenticationSuccess = authenticator.processAuthentication(data);
+                    processAuthenticationResult(isAuthenticationSuccess, data);
                     break;
                 case REGISTRATION_CLIENT_COMMAND:
                     registrationResult = registrar.processRegistration(data);
+                    processRegistrationResult(registrationResult);
                     break;
             }
-            processRegistrationResult(registrationResult);
-            processAuthenticationResult(isAuthenticationSuccess, data);
         }
     }
 

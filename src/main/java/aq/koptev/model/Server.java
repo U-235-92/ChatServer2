@@ -121,7 +121,7 @@ public class Server {
             try {
                 handler.sendMessage(Command.ANSWER_CONNECTED_CLIENTS_COMMAND, users);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
@@ -142,7 +142,7 @@ public class Server {
         }
     }
 
-    public boolean checkConnectionClientByLogin(String login) {
+    public synchronized boolean checkConnectionClientByLogin(String login) {
         for(Handler handler : handlers) {
             if(login.equals(handler.getUser().getLogin())) {
                 return true;
@@ -151,11 +151,11 @@ public class Server {
         return false;
     }
 
-    public void addHandler(Handler handler) {
+    public synchronized void addHandler(Handler handler) {
         handlers.add(handler);
     }
 
-    public void removeHandler(Handler handler) {
+    public synchronized void removeHandler(Handler handler) {
         handlers.remove(handler);
     }
 }
